@@ -16,6 +16,7 @@ public class HomeController {
     @Autowired
     private ProductService service;
 
+
     @GetMapping("/products/{productId}")
     public Map<String,Object> getProductDetailsByProductId(
             @PathVariable int productId){
