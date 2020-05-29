@@ -1,5 +1,6 @@
 package kr.re.kitri.hello.controller;
 
+import kr.re.kitri.hello.annotation.TokenRequired;
 import kr.re.kitri.hello.model.User;
 import kr.re.kitri.hello.service.impl.UserService;
 import org.slf4j.Logger;
@@ -23,6 +24,7 @@ public class UserController {
         return user;
     }
     @GetMapping("/users")
+    @TokenRequired
     public List<User> viewAllUsers(){
         return userService.getAllUsers();
     }

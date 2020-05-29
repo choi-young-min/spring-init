@@ -1,5 +1,6 @@
 package kr.re.kitri.hello.aspect;
 
+import kr.re.kitri.hello.annotation.TokenRequired;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -14,6 +15,11 @@ import org.springframework.stereotype.Component;
 public class KitriAspect {
 
     private static Logger log = LoggerFactory.getLogger(KitriAspect.class);
+
+    @Before("@annotation(tokenRequired)")
+    public void test(TokenRequired tokenRequired){
+        log.debug("토큰이 적용되어야 합니다...");
+    }
 
     @Before("execution(* kr.re.kitri.hello.service.impl.*Service.*(..))") //서비스패키지 안에있는 Service로 끝나는 클래스의 모든 메소드
     public void logging(JoinPoint joinPoint){
@@ -32,5 +38,7 @@ public class KitriAspect {
         + pjp.getSignature().getName() + "메소드의 수행 시간은 " + estimatedTime + "밀리츠 입니다.");
         return obj;
     }
+
+
 }
 
