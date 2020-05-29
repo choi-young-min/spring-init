@@ -26,6 +26,7 @@ public class UserController {
     public List<User> viewAllUsers(){
         return userService.getAllUsers();
     }
+
     @GetMapping("/users/{userid}")
     public User viewUserDetails(@PathVariable String userid){
         log.debug("잘 조회 되었습니다. " + userid);
